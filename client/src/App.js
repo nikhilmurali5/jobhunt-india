@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { BookmarkProvider } from './context/BookmarkContext';
 import Navbar from './components/Navbar';
+import Chatbot from './components/Chatbot';
 import Home from './pages/Home';
 import JobDetail from './pages/JobDetail';
 import Bookmarks from './pages/Bookmarks';
@@ -41,6 +42,7 @@ export default function App() {
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
+              {/* /jobs/:id — existing route used by JobCard and Chatbot Apply button */}
               <Route path="/jobs/:id" element={<JobDetail />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
               <Route path="/admin" element={<Admin />} />
@@ -56,6 +58,10 @@ export default function App() {
           </main>
           <Footer />
         </div>
+
+        {/* AI Chatbot — floating widget, rendered inside BrowserRouter for useNavigate */}
+        <Chatbot />
+
         <Toaster
           position="top-right"
           toastOptions={{

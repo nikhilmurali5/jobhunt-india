@@ -66,3 +66,16 @@
   backdrop-filter: blur(4px);
   z-index: 50;
 }
+
+/* ── AI Chatbot widget ────────────────────────────────────────────────────── */
+/* focus ring color for chat input (CSS variable override) */
+.chat-input-focus:focus {
+  --tw-ring-color: #f87c1e;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--tw-ring-color);
+  border-color: transparent;
+}
+
+/* Smooth height transition for minimise/expand */
+.chat-body-enter { opacity: 0; transform: translateY(8px); }
+.chat-body-enter-active { opacity: 1; transform: translateY(0); transition: opacity 0.2s, transform 0.2s; }

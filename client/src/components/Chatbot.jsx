@@ -244,7 +244,7 @@ export default function Chatbot() {
 
     try {
       const controller = new AbortController();
-const timeout = setTimeout(() => controller.abort(), 30000); // 30 sec
+const timeout = setTimeout(() => controller.abort(), 60000); // 60 sec
 
 const response = await fetch(API_BASE + '/ai/chat', {
   method: 'POST',

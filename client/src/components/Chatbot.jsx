@@ -201,7 +201,7 @@ export default function Chatbot() {
       addBotMessage('Only PDF resumes are accepted. Please choose a .pdf file.');
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
+    if (file.size > 2 * 1024 * 1024) {
       addBotMessage('File is too large (max 5 MB). Please compress your PDF and try again.');
       return;
     }
@@ -243,10 +243,16 @@ export default function Chatbot() {
     }
 
     try {
-      const response = await fetch(API_BASE + '/ai/chat', {
-        method: 'POST',
-        body: formData,
-      });
+      const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 30000); // 30 sec
+
+const response = await fetch(API_BASE + '/ai/chat', {
+  method: 'POST',
+  body: formData,
+  signal: controller.signal,
+});
+
+clearTimeout(timeout);
 
       if (!response.ok) {
         throw new Error('Server responded with ' + response.status);
@@ -288,7 +294,7 @@ export default function Chatbot() {
         id: Date.now(),
         role: 'bot',
         type: 'text',
-        text: 'Could not reach the server. Please make sure the backend is running and try again.',
+       text: 'Server is slow (Render free tier). Please wait 10–20 seconds and try again.'
       }]);
     }
 

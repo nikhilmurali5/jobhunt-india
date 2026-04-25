@@ -15,7 +15,7 @@ function getOrCreateSessionId() {
   return id;
 }
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_BASE = process.env.REACT_APP_API_URL || "https://jobhunt-india.onrender.com";
 
 // ─── Suggested prompts shown when chat is empty ───────────────────────────────
 const SUGGESTIONS = [
